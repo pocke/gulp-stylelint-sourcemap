@@ -3,17 +3,16 @@
 This repository is forked from [olegskl/gulp-stylelint](https://github.com/olegskl/gulp-stylelint).
 It supports source map feature.
 
-[![NPM version](http://img.shields.io/npm/v/gulp-stylelint.svg)](https://www.npmjs.org/package/gulp-stylelint)
-[![Build Status](https://travis-ci.org/olegskl/gulp-stylelint.svg?branch=master)](https://travis-ci.org/olegskl/gulp-stylelint)
-[![Dependency Status](https://david-dm.org/olegskl/gulp-stylelint.svg)](https://david-dm.org/olegskl/gulp-stylelint)
-[![Join the chat at https://gitter.im/olegskl/gulp-stylelint](https://badges.gitter.im/olegskl/gulp-stylelint.svg)](https://gitter.im/olegskl/gulp-stylelint?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![NPM version](http://img.shields.io/npm/v/gulp-stylelint-sourcemap.svg)](https://www.npmjs.org/package/gulp-stylelint-sourcemap)
+[![Build Status](https://travis-ci.org/olegskl/gulp-stylelint-sourcemap.svg?branch=master)](https://travis-ci.org/olegskl/gulp-stylelint-sourcemap)
+[![Dependency Status](https://david-dm.org/olegskl/gulp-stylelint-sourcemap.svg)](https://david-dm.org/olegskl/gulp-stylelint-sourcemap)
 
 A [Gulp](http://gulpjs.com/) plugin that runs [stylelint](https://github.com/stylelint/stylelint) results through a list of reporters.
 
 ## Installation
 
 ```bash
-npm install gulp-stylelint --save-dev
+npm install gulp-stylelint-sourcemap --save-dev
 ```
 
 ## Quick start
@@ -24,7 +23,7 @@ Once you have [configured stylelint](http://stylelint.io/user-guide/configuratio
 const gulp = require('gulp');
 
 gulp.task('lint-css', function lintCssTask() {
-  const gulpStylelint = require('gulp-stylelint');
+  const gulpStylelint = require('gulp-stylelint-sourcemap');
 
   return gulp
     .src('src/**/*.css')
@@ -47,13 +46,13 @@ Below is the list of currently available stylelint formatters. Some of them are 
 
 ## Options
 
-gulp-stylelint supports all [stylelint options](http://stylelint.io/user-guide/node-api/#options) except [`files`](http://stylelint.io/user-guide/node-api/#files) and [`formatter`](http://stylelint.io/user-guide/node-api/#formatter) and accepts a custom set of options listed below:
+gulp-stylelint-sourcemap supports all [stylelint options](http://stylelint.io/user-guide/node-api/#options) except [`files`](http://stylelint.io/user-guide/node-api/#files) and [`formatter`](http://stylelint.io/user-guide/node-api/#formatter) and accepts a custom set of options listed below:
 
 ```js
 const gulp = require('gulp');
 
 gulp.task('lint-css', function lintCssTask() {
-  const gulpStylelint = require('gulp-stylelint');
+  const gulpStylelint = require('gulp-stylelint-sourcemap');
   const myStylelintFormatter = require('my-stylelint-formatter');
 
   return gulp
