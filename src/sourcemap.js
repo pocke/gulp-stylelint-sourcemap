@@ -5,6 +5,9 @@
 
 import {findIndex, flatMap} from 'lodash';
 import {SourceMapConsumer} from 'source-map';
+import buildConfig from 'stylelint/dist/buildConfig';
+import minimatch from 'minimatch';
+import path from 'path';
 
 /**
  * @param{Object} lintResult - Result of StyleLint.
@@ -36,12 +39,32 @@ function _applySourcemap(lintResult, originalPositionFor) { // eslint-disable-li
   return Object.assign({}, lintResult, {results});
 }
 
+function rejectIgnoredFiles(lintResult) {
+  return buildConfig({}).then(config =>
+    new Promise(resolve => {
+      const patterns = config.config.ignoreFiles;
+      if (!patterns) {
+        resolve(lintResult);
+        return;
+      }
+
+      lintResult.results = lintResult.results.filter(result => {
+        // pattern is an abosolute pattern.
+        // So, absoluteize source
+        const source = path.join(process.cwd(), result.source);
+        return !patterns.some(pattern => minimatch(source, pattern));
+      });
+      resolve(lintResult);
+    })
+  );
+}
+
 /**
  * Applies sourcemap to lint result if exists.
  *
  * @param{Object} lintResult - Result of StyleLint.
  * @param{SourceMap} sourceMap - Raw source map object.
- * @return {Object} Same as lintResult structure.
+ * @return {Promise<Object>} A promise same as lintResult structure.
  */
 function applySourcemap(lintResult, sourceMap) {
   if (!sourceMap) {
@@ -49,7 +72,8 @@ function applySourcemap(lintResult, sourceMap) {
   }
   const sourceMapConsumer = new SourceMapConsumer(sourceMap);
   const originalPositionFor = sourceMapConsumer.originalPositionFor.bind(sourceMapConsumer);
-  return _applySourcemap(lintResult, originalPositionFor);
+  lintResult = _applySourcemap(lintResult, originalPositionFor);
+  return rejectIgnoredFiles(lintResult);
 }
 
 module.exports = {

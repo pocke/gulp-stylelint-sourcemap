@@ -95,11 +95,7 @@ module.exports = function gulpStylelint(options) {
     });
 
     const sourceMap = file.sourceMap;
-    const promise = lint(localLintOptions).then(lintResult =>
-      new Promise(resolve => {
-        resolve(applySourcemap(lintResult, sourceMap));
-      })
-    );
+    const promise = lint(localLintOptions).then(lintResult => applySourcemap(lintResult, sourceMap));
     lintPromiseList.push(promise);
 
     done(null, file);
