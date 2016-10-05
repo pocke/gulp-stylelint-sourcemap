@@ -44,23 +44,20 @@ function _applySourcemap(lintResult, originalPositionFor) { // eslint-disable-li
  * @return {Promise<Object>} A promise same as lintResult structure.
  */
 function rejectIgnoredFiles(lintResult) {
-  return buildConfig({}).then(config =>
-    new Promise(resolve => {
-      const patterns = config.config.ignoreFiles;
-      if (!patterns) {
-        resolve(lintResult);
-        return;
-      }
+  return buildConfig({}).then(config => {
+    const patterns = config.config.ignoreFiles;
+    if (!patterns) {
+      return lintResult;
+    }
 
-      lintResult.results = lintResult.results.filter(result => {
-        // pattern is an abosolute pattern.
-        // So, absoluteize source
-        const source = path.join(process.cwd(), result.source);
-        return !patterns.some(pattern => minimatch(source, pattern));
-      });
-      resolve(lintResult);
-    })
-  );
+    lintResult.results = lintResult.results.filter(result => {
+      // pattern is an abosolute pattern.
+      // So, absoluteize source
+      const source = path.join(process.cwd(), result.source);
+      return !patterns.some(pattern => minimatch(source, pattern));
+    });
+    return lintResult;
+  });
 }
 
 /**

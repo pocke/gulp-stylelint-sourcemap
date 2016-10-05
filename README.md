@@ -1,6 +1,6 @@
 # gulp-stylelint-sourcemap
 
-This repository is forked form [olegskl/gulp-stylelint](https://github.com/olegskl/gulp-stylelint).
+This repository is forked from [olegskl/gulp-stylelint](https://github.com/olegskl/gulp-stylelint).
 It supports source map feature.
 
 [![NPM version](http://img.shields.io/npm/v/gulp-stylelint.svg)](https://www.npmjs.org/package/gulp-stylelint)
