@@ -4,8 +4,8 @@ This repository is forked from [olegskl/gulp-stylelint](https://github.com/olegs
 It supports source map feature.
 
 [![NPM version](http://img.shields.io/npm/v/gulp-stylelint-sourcemap.svg)](https://www.npmjs.org/package/gulp-stylelint-sourcemap)
-[![Build Status](https://travis-ci.org/olegskl/gulp-stylelint-sourcemap.svg?branch=master)](https://travis-ci.org/olegskl/gulp-stylelint-sourcemap)
-[![Dependency Status](https://david-dm.org/olegskl/gulp-stylelint-sourcemap.svg)](https://david-dm.org/olegskl/gulp-stylelint-sourcemap)
+[![Build Status](https://travis-ci.org/pocke/gulp-stylelint-sourcemap.svg?branch=master)](https://travis-ci.org/pocke/gulp-stylelint-sourcemap)
+[![Dependency Status](https://david-dm.org/pocke/gulp-stylelint-sourcemap.svg)](https://david-dm.org/pocke/gulp-stylelint-sourcemap)
 
 A [Gulp](http://gulpjs.com/) plugin that runs [stylelint](https://github.com/stylelint/stylelint) results through a list of reporters.
 
