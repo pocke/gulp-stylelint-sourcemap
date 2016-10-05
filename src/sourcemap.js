@@ -39,6 +39,10 @@ function _applySourcemap(lintResult, originalPositionFor) { // eslint-disable-li
   return Object.assign({}, lintResult, {results});
 }
 
+/**
+ * @param{Object} lintResult - Result of StyleLint.
+ * @return {Promise<Object>} A promise same as lintResult structure.
+ */
 function rejectIgnoredFiles(lintResult) {
   return buildConfig({}).then(config =>
     new Promise(resolve => {
