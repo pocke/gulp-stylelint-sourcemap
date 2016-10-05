@@ -102,6 +102,20 @@ List of reporter configuration objects (see below). Defaults to an empty array.
 
 When set to `true`, the error handler will print an error stack trace. Defaults to `false`.
 
+## Source map Support
+
+The plugin supports source map feature.
+
+### Translate file name, line and column
+
+If a vinyl file object has a `sourcemap` field, this plugin translates file name, line and column of output.
+
+### Ignore files
+
+When `ignoreFiles` option is specified in stylelintrc, this plugin ignores the files.
+`ignoreFiles` should be specified as a glob for **translated** file name.
+
+
 ## License
 
 [MIT License](http://opensource.org/licenses/MIT)
