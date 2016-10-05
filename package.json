@@ -1,5 +1,5 @@
 {
-  "name": "gulp-stylelint",
+  "name": "gulp-stylelint-sourcemap",
   "version": "3.3.0",
   "description": "Gulp plugin for running Stylelint results through various reporters.",
   "main": "dist/index.js",
@@ -11,20 +11,21 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/olegskl/gulp-stylelint.git"
+    "url": "https://github.com/pocke/gulp-stylelint-sourcemap.git"
   },
   "keywords": [
     "gulpplugin",
     "stylelint",
     "postcss",
-    "css"
+    "css",
+    "sourcemap"
   ],
-  "author": "Oleg Sklyanchuk <sklyanchuk@gmail.com> (http://olegskl.com)",
+  "author": "Masataka Kuwabara <kuwabara@pocke.me> (http://me.pocke.me)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/olegskl/gulp-stylelint/issues"
+    "url": "https://github.com/pocke/gulp-stylelint-sourcemap/issues"
   },
-  "homepage": "https://github.com/olegskl/gulp-stylelint",
+  "homepage": "https://github.com/pocke/gulp-stylelint-sourcemap",
   "dependencies": {
     "chalk": "^1.1.3",
     "deep-extend": "^0.4.1",
