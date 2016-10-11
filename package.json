@@ -35,7 +35,7 @@
     "mkdirp": "^0.5.1",
     "promise": "^7.1.1",
     "source-map": "^0.5.6",
-    "stylelint": "^7.3.1",
+    "stylelint": "^7.4.0",
     "through2": "^2.0.1"
   },
   "devDependencies": {

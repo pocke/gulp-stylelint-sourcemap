@@ -10,8 +10,10 @@ test('when sourcemap is undefined, should return same Object', t => {
     }]
   };
 
-  const applied = applySourcemap(result, undefined);
-  t.equal(result, applied, 'return same object')
+  const promise = applySourcemap(result, undefined);
+  promise.then(applied => {
+    t.equal(result, applied, 'return same object');
+  });
 });
 
 test('should return applied lint result', t => {
