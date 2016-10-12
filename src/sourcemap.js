@@ -41,10 +41,11 @@ function _applySourcemap(lintResult, originalPositionFor) { // eslint-disable-li
 
 /**
  * @param{Object} lintResult - Result of StyleLint.
+ * @param{Object} localLintOptions -
  * @return {Promise<Object>} A promise same as lintResult structure.
  */
-function rejectIgnoredFiles(lintResult) {
-  return buildConfig({}).then(config => {
+function rejectIgnoredFiles(lintResult, localLintOptions) {
+  return buildConfig(localLintOptions).then(config => {
     const patterns = config.config.ignoreFiles;
     if (!patterns) {
       return lintResult;
@@ -65,16 +66,17 @@ function rejectIgnoredFiles(lintResult) {
  *
  * @param{Object} lintResult - Result of StyleLint.
  * @param{SourceMap} sourceMap - Raw source map object.
+ * @param{Object} localLintOptions -
  * @return {Promise<Object>} A promise same as lintResult structure.
  */
-function applySourcemap(lintResult, sourceMap) {
+function applySourcemap(lintResult, sourceMap, localLintOptions) {
   if (!sourceMap) {
     return Promise.resolve(lintResult);
   }
   const sourceMapConsumer = new SourceMapConsumer(sourceMap);
   const originalPositionFor = sourceMapConsumer.originalPositionFor.bind(sourceMapConsumer);
   lintResult = _applySourcemap(lintResult, originalPositionFor);
-  return rejectIgnoredFiles(lintResult);
+  return rejectIgnoredFiles(lintResult, localLintOptions);
 }
 
 module.exports = {
