@@ -5,7 +5,7 @@
 
 import {findIndex, flatMap} from 'lodash';
 import {SourceMapConsumer} from 'source-map';
-import augmentConfig from 'stylelint/dist/augmentConfig';
+import buildConfig from 'stylelint/dist/buildConfig';
 import minimatch from 'minimatch';
 import path from 'path';
 
@@ -44,7 +44,7 @@ function _applySourcemap(lintResult, originalPositionFor) { // eslint-disable-li
  * @return {Promise<Object>} A promise same as lintResult structure.
  */
 function rejectIgnoredFiles(lintResult) {
-  return augmentConfig({}).then(config => {
+  return buildConfig({}).then(config => {
     const patterns = config.config.ignoreFiles;
     if (!patterns) {
       return lintResult;
@@ -69,7 +69,7 @@ function rejectIgnoredFiles(lintResult) {
  */
 function applySourcemap(lintResult, sourceMap) {
   if (!sourceMap) {
-    return new Promise(resolve => resolve(lintResult));
+    return Promise.resolve(lintResult);
   }
   const sourceMapConsumer = new SourceMapConsumer(sourceMap);
   const originalPositionFor = sourceMapConsumer.originalPositionFor.bind(sourceMapConsumer);
