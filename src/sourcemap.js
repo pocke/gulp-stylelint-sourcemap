@@ -5,7 +5,6 @@
 
 import {findIndex, flatMap} from 'lodash';
 import {SourceMapConsumer} from 'source-map';
-import augmentConfig from 'stylelint/dist/augmentConfig';
 import minimatch from 'minimatch';
 import path from 'path';
 
@@ -45,20 +44,19 @@ function _applySourcemap(lintResult, originalPositionFor) { // eslint-disable-li
  * @return {Promise<Object>} A promise same as lintResult structure.
  */
 function rejectIgnoredFiles(lintResult, localLintOptions) {
-  return augmentConfig(localLintOptions).then(config => {
-    const patterns = config.config.ignoreFiles;
-    if (!patterns) {
-      return lintResult;
-    }
-
-    lintResult.results = lintResult.results.filter(result => {
-      // pattern is an abosolute pattern.
-      // So, absoluteize source
-      const source = path.join(process.cwd(), result.source);
-      return !patterns.some(pattern => minimatch(source, pattern));
-    });
+  const patterns = localLintOptions.config.ignoreFiles;
+  if (!patterns) {
     return lintResult;
+  }
+
+  lintResult.results = lintResult.results.filter(result => {
+    // pattern is an abosolute pattern.
+    // So, absoluteize source
+    const source = path.join(process.cwd(), result.source);
+    return !patterns.some(pattern => minimatch(source, pattern));
   });
+
+  return Promise.resolve(lintResult);
 }
 
 /**
